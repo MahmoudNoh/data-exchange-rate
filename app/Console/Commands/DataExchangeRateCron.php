@@ -51,12 +51,14 @@ class DataExchangeRateCron extends Command
 
                 unset($data['date']);
 
-                foreach ($data as $item){
-                    DataExchangeRate::create([
-                        'currency_code' => $item['currency'],
-                        'date'=> $date,
-                        'rate'=> $item['Rate'],
-                    ]);
+                if($date == date("Y-m-d")) {
+                    foreach ($data as $item) {
+                        DataExchangeRate::create([
+                            'currency_code' => $item['currency'],
+                            'date' => $date,
+                            'rate' => $item['Rate'],
+                        ]);
+                    }
                 }
             }
 
